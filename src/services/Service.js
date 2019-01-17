@@ -1,5 +1,5 @@
-const ENDPOINT = 'https://randomuser.me/api/?results=50';
+const ENDPOINT = 'https://randomuser.me/api/?results=';
 
-const fetchUsers = fetch(ENDPOINT).then(response => response.json());
+const fetchUsers = (par) => fetch(ENDPOINT + par).then(response => response.json());
 
 export { fetchUsers };

@@ -3,16 +3,22 @@ import React, {Component} from "react";
 class User extends Component {
 
   render() {
-
-    const {user} = this.props;
+    const {users} = this.props;
 
     return (
-      <div className='user'>
-        <h2>{user.name.first}</h2>
-        <img src={user.picture.medium} alt={user.name.first}/>
-        <p>{user.location.city}</p>
-        <p>{user.dob.age}</p>
-      </div>
+      <ul className="users__list" >
+        {users.map((item, index) => {
+          return (
+            <li className='user' key={index}>
+              <h2>{item.name.first}</h2>
+              <img src={item.picture.medium} alt={item.name.first}/>
+              <p>{item.location.city}</p>
+              <p>{item.dob.age}</p>
+            </li>
+          );
+        })
+        }
+      </ul>
     );
   }
 }

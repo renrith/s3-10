@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import User from './components/User'
 import './App.css';
 
-const {fetchUsers} = import('./services/Service.js')
+import {fetchUsers} from './services/Service';
 
 class App extends Component {
   constructor(props){
@@ -20,12 +20,11 @@ class App extends Component {
   }
 
   fetchNewUsers() {
-    const ENDPOINT = 'https://randomuser.me/api/?results=50';
+    //const ENDPOINT = 'https://randomuser.me/api/?results=50';
 
-      const fetchUsers = fetch(ENDPOINT).then(response => response.json())
+    fetchUsers(3)
       .then(data => {
         console.log(data);
-
         this.setState({
           userList: data
         })
@@ -36,7 +35,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        {this.state.userList.results.length < 1 ? <p>waiting for data</p> : <User user={this.state.userList.results[0]}/>}
+        {this.state.userList.results.length < 1 ? <p>waiting for data</p> : <User users={this.state.userList.results}/>}
       </div>
     );
   }
