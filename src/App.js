@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import User from './components/User'
+import {Link, Route, Switch} from 'react-router-dom';
+import UserList from './components/UserList';
+import UserDetail from './components/UserDetail';
+
 import './App.css';
 
 import {fetchUsers} from './services/Service';
@@ -35,7 +38,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        {this.state.userList.results.length < 1 ? <p>waiting for data</p> : <User users={this.state.userList.results}/>}
+        <UserList users={this.state.userList.results}/>
+        <Switch>
+            <Route path="/userdetail/:id" render= {props => <UserDetail match={props.match} userlist={this.state.userlist} />} />
+        </Switch>
       </div>
     );
   }
